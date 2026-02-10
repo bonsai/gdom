@@ -156,7 +156,8 @@ function fillTemplate(): void {
       const val = flatData[key];
       if (val !== null && val !== undefined) {
         try {
-          body.replaceText("{{" + key + "}}", String(val));
+          const escapedKey = key.replace(/[.*+?^${}()|[]\\/g, '\\$&');
+          body.replaceText("{{" + escapedKey + "}}", String(val));
           count++;
         } catch (e) {
           Logger.log(`Error replacing ${key}: ${e}`);
