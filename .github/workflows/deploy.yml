@@ -24,6 +24,8 @@ jobs:
       - name: Create .clasprc.json
         run: |
           echo '${{ secrets.CLASPRC_JSON_BASE64 }}' | base64 -d > ~/.clasprc.json
+          echo "Verifying JSON validity..."
+          node -e "try { const c = JSON.parse(require('fs').readFileSync(process.env.HOME + '/.clasprc.json')); console.log('JSON is valid. Keys:', Object.keys(c)); } catch (e) { console.error('Invalid JSON'); process.exit(1); }"
 
       - name: Push to GAS
         run: clasp push --force
