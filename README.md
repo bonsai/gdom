@@ -1,20 +1,66 @@
-# Grant AutoPilot
+# Grant AutoPilot (GDOM)
 
-Autonomous grant application document generator using Google Apps Script.
+Autonomous grant application document generator using Google Apps Script & GDOM.
 
-## Features
-- Schema auto detection from bureaucratic templates
-- LLM semantic field mapping
-- Smart table auto-fill
-- One-click PDF export
+## 📖 What is GDOM?
 
-## Research Topics
-GovTech, NLP, HCI, Digital Humanities
+**GDOM (Google Doc Object Model)** is a DOM-like interface for Google Apps Script.
+It treats Google Docs like HTML, enabling developers to manipulate documents using familiar concepts like `getElementById` (mapped to NamedRanges) and `createElement`.
 
-## 🦕 Deno Support
-You can also use Deno for development and tasks.
+## ✨ Features
+
+- **Schema Auto Detection**: Analyze bureaucratic PDF templates and detect fields.
+- **Semantic Field Mapping**: Map user data to document fields using LLM.
+- **The 2-Command Strategy**:
+    1.  **Embed**: Inject structure (NamedRanges) into a raw Google Doc based on schema.
+    2.  **Inject**: Fill content into the structured document.
+- **Smart Table Auto-fill**: Automatically populate budget tables and lists.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18+)
+- Deno (for local tasks)
+- Google Apps Script API enabled
+
+### Installation
 
 ```bash
-deno task push  # Same as npm run push
-deno test       # Run local logic tests
+npm install
 ```
+
+### Development
+
+We use **Clasp** for pushing code to Google Apps Script and **Deno** for local task management. You can use `deno task` which leverages Deno's npm compatibility, or use a standard Node.js setup with `npx clasp` after running `npm install`.
+
+```bash
+# Push code to GAS
+deno task push
+# or
+npx clasp push
+
+# Run local tests
+deno test
+```
+
+## 🛠 Usage
+
+### 1. Embed Structure
+Parse the detected schema JSON and "tag" the target Google Doc with NamedRanges.
+
+### 2. Inject Content
+Fill the tagged document with data from your content JSON.
+
+To run both steps, use the following function in the GAS Editor:
+```typescript
+// In GAS Editor
+// This function embeds structure (NamedRanges) based on detected JSON
+// and then injects content.
+runEmbedAndInject(); 
+
+## 📂 Project Structure
+
+- `src/lib/gdom.ts`: Core GDOM implementation.
+- `src/main.ts`: Main entry point for GAS.
+- `data/`: Sample schemas and content files.
