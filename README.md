@@ -1,4 +1,4 @@
-# Grant AutoPilot (GDOM)
+# GDOC DOMlike filler (GDOM)
 
 Autonomous grant application document generator using Google Apps Script & GDOM.
 
