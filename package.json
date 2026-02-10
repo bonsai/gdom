@@ -1,0 +1,24 @@
+{
+  "name": "gdom",
+  "version": "1.0.0",
+  "description": "Autonomous grant application document generator using Google Apps Script & GDOM.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bonsai/gdom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bonsai/gdom/issues"
+  },
+  "homepage": "https://github.com/bonsai/gdom#readme"
+}
