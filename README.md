@@ -32,7 +32,7 @@ npm install
 
 ### Development
 
-We use **Clasp** for pushing code to Google Apps Script and **Deno** for local task management.
+We use **Clasp** for pushing code to Google Apps Script and **Deno** for local task management. You can use `deno task` which leverages Deno's npm compatibility, or use a standard Node.js setup with `npx clasp` after running `npm install`.
 
 ```bash
 # Push code to GAS
@@ -49,15 +49,15 @@ deno test
 ### 1. Embed Structure
 Parse the detected schema JSON and "tag" the target Google Doc with NamedRanges.
 
+### 2. Inject Content
+Fill the tagged document with data from your content JSON.
+
+To run both steps, use the following function in the GAS Editor:
 ```typescript
 // In GAS Editor
 // This function embeds structure (NamedRanges) based on detected JSON
 // and then injects content.
 runEmbedAndInject(); 
-```
-
-### 2. Inject Content
-Fill the tagged document with data from your content JSON.
 
 ## 📂 Project Structure
 
