@@ -242,19 +242,32 @@ function runEmbedAndInject(): void {
       const label = field.layer_2_semantic?.label;
       if (!label) return;
 
+      // Skip very long labels that might cause regex errors
+      if (label.length > 200) {
+        Logger.log(`Skipping long label (${label.length} chars): ${label.substring(0, 50)}...`);
+        return;
+      }
+
       // Try to find the label in the doc
-      const found = body.findText(label);
-      if (found) {
-        const element = found.getElement();
-        
-        // Check if ID already exists
-        const existingRanges = targetDoc.getNamedRanges(field.id);
-        if (existingRanges.length === 0) {
-          const rangeBuilder = targetDoc.newRange();
-          rangeBuilder.addElement(element);
-          targetDoc.addNamedRange(field.id, rangeBuilder.build());
-          embedCount++;
+      // Escape special characters in label for findText
+      const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      
+      try {
+        const found = body.findText(escapedLabel);
+        if (found) {
+          const element = found.getElement();
+          
+          // Check if ID already exists
+          const existingRanges = targetDoc.getNamedRanges(field.id);
+          if (existingRanges.length === 0) {
+            const rangeBuilder = targetDoc.newRange();
+            rangeBuilder.addElement(element);
+            targetDoc.addNamedRange(field.id, rangeBuilder.build());
+            embedCount++;
+          }
         }
+      } catch (e) {
+        Logger.log(`Skipping invalid label pattern: "${label}" (Escaped: "${escapedLabel}") - Error: ${e}`);
       }
     });
     Logger.log(`Embedded ${embedCount} new named ranges.`);

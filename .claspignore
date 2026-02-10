@@ -1,11 +1,4 @@
-.git
-.gitignore
-node_modules
-src2
-tests
-deno.json
-tsconfig.json
-tasks.json
-README.md
-
-!src/**/*.ts
+**/*.ts
+src/doc/**
+src/lib/**
+src/test/**
