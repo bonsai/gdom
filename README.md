@@ -32,7 +32,7 @@ npm install
 
 ### Development
 
-We use **Clasp** for pushing code to Google Apps Script and **Deno** for local task management.
+We use **Clasp** for pushing code to Google Apps Script and **Deno** for local task management. You can use `deno task` which leverages Deno's npm compatibility, or use a standard Node.js setup with `npx clasp` after running `npm install`.
 
 ```bash
 # Push code to GAS
