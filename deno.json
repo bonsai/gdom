@@ -1,0 +1,15 @@
+{
+  "tasks": {
+    "push": "deno run --allow-env --allow-read --allow-write --allow-sys --allow-net npm:@google/clasp push",
+    "open": "deno run --allow-env --allow-read --allow-write --allow-sys --allow-net npm:@google/clasp open",
+    "test": "deno test"
+  },
+  "compilerOptions": {
+    "types": [
+      "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/google-apps-script/index.d.ts"
+    ]
+  },
+  "imports": {
+    "@google/clasp": "npm:@google/clasp@^2.4.2"
+  }
+}

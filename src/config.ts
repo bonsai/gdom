@@ -1,0 +1,4 @@
+export const CONFIG = {
+  TEMPLATE_DOC_ID: "DOC_ID",
+  OUTPUT_FOLDER_ID: "FOLDER_ID"
+};
